@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+     <meta charset="UTF-8">
+     <!--Na segunda página o usuário deverá responder uma pergunta utilizando um botão de rádio, que abrirá uma segunda pergunta 
+     nesta mesma página. Esta segunda pergunta deverá ser diferente, pois depende da primeira escolha do usuário. E terá dois botões,
+um para ir para a página anterior e outro para ir para a próxima página. As respostas do usuário também devem ser salvas no localstorage.
+       Se ele for para a página anterior, a resposta dele já deve aparecer e ele pode alterar a sua resposta e ir para a próxima 
+       página que já terá também a resposta dele já preenchida.-->
+        
+    
+       <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body onload="carregar()"> 
+     
+     
+    
+     <h1>Está curioso para saber a próxima pergunta ?</h1>
+<br>
+      
+<br>
+     <input onchange="salvar('resposta',event)" type="radio" id="sim" name="res" value="sim">
+     <label for="sim">sim</label>
+     <input onchange="salvar('resposta',event)"  type="radio" id="não" name="res" value="não">
+     <label for="não">não</label>
+     <br>
+     <p id="p1" style="display: none;">
+          <label>Você quer mesmo alcança-lo? </label>
+
+
+     <input onchange="salvar('per',event)" type="text" id="per" />
+     </p>
+     <br>
+     <button id="salvar">salvar</button>
+     <pre id="resultado"></pre>
+     <br>
+     
+    
+    <input type="button" value="sim" onclick="voltar()"/>
+    <input type="button"  value="continuar" onclick="continuar()"/>
+    <br>
+
+<script>
+          function carregar(){ 
+               var pegar = localStorage.getItem('resposta')
+               if (pegar == "sim" ){
+               document.getElementById('sim').checked = true
+               document.getElementById('p1').style.display="block"
+               document.getElementById('per').value=localStorage.getItem('per')
+          }else{
+                    document.getElementById('não').checked = true
+                    document.getElementById('p1').style.display="none"
+               }
+          }
+     function salvar(campo,event){
+          localStorage.setItem(campo,event.target.value)
+          if (event.target.value=="sim"){
+               document.getElementById("p1").style.display="block"
+          }else if(event.target.value=="não"){
+               document.getElementById("p1").style.display="none"
+               document.getElementById("per").value=""
+              localStorage.removeItem("per") 
+          }
+             
+     }
+
+
+
+
+     function voltar () { 
+     document.location.href = "Pesquisa1.html"
+}
+     function  continuar() {
+     document.location.href = "Pesquisa3.html"
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+
+<!-- Nesta terceira página o usuário irá responder sua última pergunta utilizando uma caixa de seleção, que também será salva no localstorage.
+E terá dois botões, uma para ir para a página anterior e outro para encerrar a pesquisa que levará para a página de resultado.
+No caso dele ir para a página anterior, deve seguir o mesmo comportamento já informado na página 2.-->
+
+<title>pagina3</title>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body onload="carregar()">
+             <h1>Você costuma fazer planejamentos?</h1>
+        <form nome="Pesquisa3" method="GET" action="">
+        <input onchange="salvar('planejamento',event)" type="checkbox" id="sempre" name="um" value="sempre">
+        <label for="sempre"> sempre</label><br>
+        <input onchange="salvar('planejamento',event)" type="checkbox" id="nunca" name="dois" value="nunca">
+        <label for="nunca"> nunca</label><br>
+        <input onchange="salvar('planejamento',event)" type="checkbox" id="esporadicamente" name="dois" value="esporadicamente">
+        <label for="esporadicamente">esporadicamente</label>
+        <br>
+        <br>
+        <input type="button" value="voltar"  onclick="voltar()"/>
+        <input type="button"  value="resultado" onclick="resultado()"/>
+        <p id='mostrar' ></p>
+
+        </form>
+        <script>  
+        
+          function carregar(){
+            var array1=[]
+            array1=JSON.parse(localStorage.getItem('planejamento'))
+            if(array1){
+              array1.forEach(element => {
+              document.getElementById(element).checked = true
+              });
+
+            }
+
+          }
+
+
+          function salvar(campo,event){
+             let array=[]
+             array=JSON.parse(localStorage.getItem("planejamento"))
+              
+             if (!array){ 
+               localStorage.setItem(campo,JSON.stringify([event.target.value]))
+          }else{ 
+            console.log (array)
+           let encontrado = array.find(Elemento => Elemento == event.target.value)
+              console.log("entrou")
+           if (encontrado){
+               array = array.filter(Elemento => Elemento != event.target.value)
+               localStorage.setItem(campo,JSON.stringify(array))
+           }else{
+             array.push(event.target.value)
+             localStorage.setItem(campo,JSON.stringify(array))
+           }
+          }
+        }
+          
+        function voltar () { 
+             document.location.href = "Pesquisa2.html"
+        }
+        function  resultado() {
+          document.location.href = "Pesquisa4.html"
+             
+        }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+          <!-- Página inicial da pesquisa, onde o usuário irá colocar o seu nome e responder uma pergunta aberta utilizando um textarea. 
+         Nesta página você irá salvar nolocalstorage o nome e essa primeira resposta do usuário e terá um botão que levará ele para a
+          próxima página.-->
+          <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body onload="carregar()">
+
+
+
+    
+    <h1>Qual é o seu maior sonho? </h1>
+
+    
+
+    <form nome="Pesquisa" method="GET" action="">
+    <p>
+    <label for="questão"> Digite o seu nome completo e descreva com detalhes o seu maior sonho: </label><br>
+    </p>
+    <textarea onchange="salvar('questão',event)" rows="7" cols="100" nome="resposta"
+    id="questão" ></textarea>
+    <br>
+    
+    <br>
+    
+    <input type="button" value="continuar" onclick="continuar()"/>
+    
+    
+    </form>
+        
+        <script>    
+         
+         function carregar(){
+             var armazem = localStorage.getItem('questão')
+             console.log(armazem)
+             document.getElementById('questão').value = localStorage.getItem('questão')
+         }
+
+
+        function salvar(campo,event){ 
+           localStorage.setItem(campo,event.target.value)
+        }
+        
+        
+        function continuar () { 
+             document.location.href = "Pesquisa2.html"
+
+        }
+    
+    </script> 
+
+</body>
+</html>

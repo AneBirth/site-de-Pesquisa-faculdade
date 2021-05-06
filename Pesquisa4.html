@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+
+<!-- Nesta última página você deverá exibir todas as respostas deste usuário e terá um botão para 
+    uma nova pesquisa (que levará para a primeira página e que não deverá ter nenhuma resposta já preenchida).-->
+
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body  onload="carregar()">
+
+       <h1>Obrigada por responder ao questionario, essas foram as suas respostas:</h1>
+        <br>
+
+        <label>Seu nome e seu sonho:</label>
+        <p id="sonho">
+          
+       </p>
+
+       <label>Sua curiosidade:  </label>
+       <p id="curiosidade">
+
+       </p>
+       <br>
+       
+       <div id="terceira" style="display: none;">
+        <label>Sua determinação:  </label>
+       <p id="força">
+    
+       </p>
+       </div>
+       <label>Seu planejamento: </label>
+       <br>
+       <p id="plano">
+       </p>
+       <br>
+        <input type="button" value="Recomeçar"  onclick="Recomeçar"/>
+        
+    
+<script> 
+
+function carregar(){
+       document.getElementById('sonho').innerHTML= localStorage.getItem('questão')
+       document.getElementById('curiosidade').innerHTML=localStorage.getItem('resposta')
+       if (localStorage.getItem("resposta")== "sim"){ 
+        let campo = document.getElementById('terceira')
+        campo.style.display="block" 
+        document.getElementById('força').innerHTML= localStorage.getItem('per')
+       }
+       document.getElementById('plano').innerHTML=localStorage.getItem('planejamento')
+    }
+function Recomeçar(){ 
+ 
+    document.location.href = "Pesquisa1.html"
+}
+
+</script>
+
+
+
+    
+</body>
+
+
+
+
+</head>
+</html>
